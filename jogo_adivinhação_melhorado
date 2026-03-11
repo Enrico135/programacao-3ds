@@ -1,0 +1,59 @@
+import random
+
+def jogar():
+    print("🎯 Bem-vindo ao jogo de adivinhação!")
+    print("Escolha o nível de dificuldade:")
+    print("1 - Fácil (1 a 10)")
+    print("2 - Médio (1 a 50)")
+    print("3 - Difícil (1 a 100)")
+
+    nivel = int(input("Digite sua escolha: "))
+    if nivel == 1:
+        limite = 10
+    elif nivel == 2:
+        limite = 50
+    else:
+        limite = 100
+
+    numero_secreto = random.randint(1, limite)
+    tentativas = 0
+    max_tentativas = 5
+    pontos = 100
+
+    print(f"Tente adivinhar o número entre 1 e {limite}. Você tem {max_tentativas} tentativas.")
+
+    while tentativas < max_tentativas:
+        try:
+            palpite = int(input("Digite seu palpite: "))
+        except ValueError:
+            print("Por favor, digite apenas números.")
+            continue
+
+        tentativas += 1
+
+        if palpite == numero_secreto:
+            print(f"🎉 Parabéns! Você acertou o número em {tentativas} tentativas.")
+            print(f"Pontuação final: {pontos}")
+            break
+        elif palpite < numero_secreto:
+            print("Quase lá! Tente um número maior.")
+        else:
+            print("Quase lá! Tente um número menor.")
+
+        pontos -= 20  # perde pontos a cada erro
+
+        if tentativas < max_tentativas:
+            print(f"Você tem {max_tentativas - tentativas} tentativas restantes.")
+    else:
+        print(f"😢 Infelizmente, você não acertou. O número era {numero_secreto}.")
+        print("Pontuação final: 0")
+
+    # Pergunta se o jogador quer jogar novamente
+    jogar_novamente = input("Deseja jogar novamente? (s/n): ").lower()
+    if jogar_novamente == "s":
+        jogar()
+    else:
+        print("Obrigado por jogar! 👋")
+
+# Inicia o jogo
+jogar()
