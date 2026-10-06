@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Qual o seu Time do Coração?</title>
+</head>
+
+<body>
+
+  <h1>Qual o seu Time do Coração?</h1>
+
+  <select id="time">
+    <option>Botafogo</option>
+    <option>Flamengo</option>
+    <option>Fluminense</option>
+    <option>Vasco da Gama</option>
+  </select>
+
+  <button onclick="enviar()">Enviar</button>
+  <button onclick="cancelar()">Cancelar</button>
+
+  <script>
+    function enviar() {
+      let time = document.getElementById("time").value;
+      alert("Seu time é: " + time);
+    }
+
+    function cancelar() {
+      document.getElementById("time").selectedIndex = 0;
+    }
+  </script>
+
+</body>
+</html>
